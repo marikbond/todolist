@@ -1,0 +1,13 @@
+{
+  "name": "static",
+  "homepage": "https://github.com/marikbond/todolist",
+  "authors": [
+    "Mark <markb.privat@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

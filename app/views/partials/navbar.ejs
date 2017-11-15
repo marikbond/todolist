@@ -1,0 +1,38 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand" id="header-logo">TodoList</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav navbar-right navbar-hover">
+                <li><a href="#" id="add-task-btn" data-toggle="modal" data-target="#add-task-modal">Add Task</a></li>
+                <li><a href="#" id="sign-in-btn">Sign In</a></li>
+                <li><a href="#" id="sign-up-btn">Sign Up</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div id="add-task-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title">NEW TASK</h3>
+            </div>
+            <div class="modal-body">
+                <h5>Title</h5>
+                <input id="article-title" type="text" class="form-control" placeholder="Title">
+                <h5>Content</h5>
+                <textarea id="article-content" class="form-control" rows="6" placeholder="Content"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="articleCtrl.clearModal()">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="articleCtrl.saveArticle()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

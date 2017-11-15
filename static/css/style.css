@@ -1,0 +1,114 @@
+.body {
+    padding-top: 60px;
+}
+
+.navbar-default {
+    background-color: #2b669a;
+}
+
+.jumbotron {
+    margin-top: 50px;
+}
+
+.jumbotron p {
+    margin-bottom: 0;
+}
+
+#header-logo {
+    color: #ffffff;
+}
+
+#header-logo:hover {
+    color: #9d9d9d;
+}
+
+#add-task-btn {
+    color: #fff6f6;
+    font-weight: normal;
+}
+
+#sign-in-btn {
+    font-weight: normal;
+    color: #fff6f6;
+}
+
+#sign-up-btn {
+    font-weight: bold;
+    color: #6fc96d;
+}
+
+#search-form {
+    /*position: relative;*/
+    /*left: 50%;*/
+    /*margin-left: -121px;*/
+}
+
+#search-form-text {
+    font-weight: bold;
+    font-size: 40px;
+}
+#search-form-subtext {
+    font-size: 15px;
+    color: #949393;
+}
+
+#search-field {
+    width: 500px;
+}
+
+#search-form-submit {
+    width: 150px;
+}
+
+.bs-callout {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+}
+
+.ceparator-lane {
+    width: 500px;
+    height: 1px;
+    background-color: #eeeeee;
+    margin: 5px 0 5px 0;
+}
+
+.bs-callout h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.bs-callout p:last-child {
+    margin-bottom: 0;
+}
+
+.bs-callout-new {
+    border-left-color: #428bca;
+}
+.bs-callout-new h4 a {
+    color: #428bca;
+}
+.bs-callout-done {
+    border-left-color: #5cb85c;
+}
+.bs-callout-done h4 a {
+    color: #5cb85c;
+}
+.bs-callout-immeditelly {
+    border-left-color: #d9534f;
+}
+.bs-callout-immeditelly h4 a {
+    color: #d9534f;
+}
+.bs-callout-in-progress {
+    border-left-color: #f0ad4e;
+}
+.bs-callout-in-progress h4 a {
+    color: #f0ad4e;
+}
+
+.task-glyphicon {
+    font-size: 23px;
+}

@@ -1,30 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-</head>
-<body>
+<% layout('boilerplate') -%>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Todo List</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-
+<% include partials/search.ejs %>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <% tasks.forEach(function (task) { %>
+                <div class="bs-callout bs-callout-new">
+                    <h4><a href="#"><%= task.title %></a></h4>
+                    <p><%= task.description %></p>
+                    <div class="ceparator-lane"></div>
+                    <p>Status: <%= task.status %></p>
+                    <div class="dropdown">
+                        <span class="glyphicon glyphicon-option-vertical task-glyphicon pull-right dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown"></span>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#">Start</a></li>
+                            <li><a href="#">Mark as done</a></li>
+                            <li><a href="#">Delete</a></li>
+                        </ul>
+                    </div>
+                </div>
+            <% }) %>
         </div>
     </div>
-</nav>
-
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-</body>
-</html>
+</div>

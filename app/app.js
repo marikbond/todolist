@@ -6,36 +6,16 @@ app.set('views', './app/views');
 app.set('view engine', 'ejs');
 app.use(express.static('static'));
 
+var Task = require('./models/tasks');
+
 app.get('/', function (req, res) {
-    res.render('index');
+    Task.findAll(function (err, tasks) {
+        if (err) return;
+        res.render('index', {tasks: tasks});
+    });
 });
 
-app.listen(3008, function () {
-    console.log('Example app listening on port 3000!');
+var port = 3009;
+app.listen(port, function () {
+    console.log('Example app listening on port ' + port + '!');
 });
-
-
-
-// var mysql = require('mysql');
-//
-// var pool = mysql.createPool({
-//     connectionLimit : 20,
-//     host            : 'localhost',
-//     user            : 'root',
-//     password        : 'root',
-//     database        : 'todolist'
-// });
-//
-// pool.getConnection(function(err, connection) {
-//     if (err) {
-//         console.error('ERROR connecting!: ' + err.stack);
-//         return;
-//     }
-//     connection.query('SELECT * FROM tasks', function (error, results, fields) {
-//         connection.release();
-//         if (error) throw error;
-//         results.forEach(function (row) {
-//             console.log(row);
-//         });
-//     });
-// });

@@ -37,16 +37,11 @@
     color: #6fc96d;
 }
 
-#search-form {
-    /*position: relative;*/
-    /*left: 50%;*/
-    /*margin-left: -121px;*/
-}
-
 #search-form-text {
     font-weight: bold;
     font-size: 40px;
 }
+
 #search-form-subtext {
     font-size: 15px;
     color: #949393;
@@ -87,24 +82,31 @@
 .bs-callout-new {
     border-left-color: #428bca;
 }
+
 .bs-callout-new h4 a {
     color: #428bca;
 }
+
 .bs-callout-done {
     border-left-color: #5cb85c;
 }
+
 .bs-callout-done h4 a {
     color: #5cb85c;
 }
+
 .bs-callout-immeditelly {
     border-left-color: #d9534f;
 }
+
 .bs-callout-immeditelly h4 a {
     color: #d9534f;
 }
+
 .bs-callout-in-progress {
     border-left-color: #f0ad4e;
 }
+
 .bs-callout-in-progress h4 a {
     color: #f0ad4e;
 }

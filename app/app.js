@@ -15,6 +15,12 @@ app.get('/', function (req, res) {
     });
 });
 
+app.get('/search', function (req, res) {
+    var queryParams = urlutils.parse(req.url, true).query;
+    //TODO найти задачи запросу и отрендерить html с задачими
+    res.end(queryParams.query);
+});
+
 var port = 3009;
 app.listen(port, function () {
     console.log('Example app listening on port ' + port + '!');

@@ -21,9 +21,24 @@ var TaskAPI = {
             });
         });
     },
-    find: function (params) {
-        console.log(params);
-        throw new Error('Unsupported operation');
+    find: function (callback, params) {
+        connectionPool.getConnection(function(err, connection) {
+            if (err) {
+                console.error('ERROR connecting!: ' + err.stack);
+                callback(err);
+                return;
+            }
+            var sql = 'SELECT * FROM Tasks WHERE title LIKE ' + "'" + params + "'"; //TODO <-- Has to work with searchData
+            connection.query(sql, function (error, results, fields) {
+                connection.release();
+                if (error) throw error;
+                var tasks = [];
+                results.forEach(function (row) {
+                    tasks.push(new Task(row));
+                });
+                callback(null, tasks);
+            });
+        }, params);
     },
     findById: function () {
         throw new Error('Unsupported operation');

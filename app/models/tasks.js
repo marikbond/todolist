@@ -1,5 +1,5 @@
 var connectionPool = require('./index');
-var dateUtils = require('../common/dateUtils');
+var dateformat = require('dateformat');
 
 var TaskAPI = {
     findAll: function (callback) {
@@ -10,33 +10,25 @@ var TaskAPI = {
                 return;
             }
             var sql = 'SELECT * FROM tasks';
-            connection.query(sql, function (error, results, fields) {
+            connection.query(sql, function (error, results) {
                 connection.release();
                 if (error) throw error;
-                var tasks = [];
-                results.forEach(function (row) {
-                    tasks.push(new Task(row));
-                });
-                callback(null, tasks);
+                callback(null, extractTasks(results));
             });
         });
     },
-    find: function (callback, params) {
+    find: function (params, callback) {
         connectionPool.getConnection(function(err, connection) {
             if (err) {
                 console.error('ERROR connecting!: ' + err.stack);
                 callback(err);
                 return;
             }
-            var sql = 'SELECT * FROM Tasks WHERE title LIKE ' + "'" + params + "'"; //TODO <-- Has to work with searchData
-            connection.query(sql, function (error, results, fields) {
+            var sql = 'SELECT * FROM Tasks WHERE title LIKE ' + "'%" + params + "%'";
+            connection.query(sql, function (error, results) {
                 connection.release();
                 if (error) throw error;
-                var tasks = [];
-                results.forEach(function (row) {
-                    tasks.push(new Task(row));
-                });
-                callback(null, tasks);
+                callback(null, extractTasks(results));
             });
         }, params);
     },
@@ -45,6 +37,14 @@ var TaskAPI = {
     }
 };
 
+function extractTasks(results) {
+    var tasks = [];
+    results.forEach(function (row) {
+        tasks.push(new Task(row));
+    });
+    return tasks;
+}
+
 module.exports = TaskAPI;
 
 function Task(param) {
@@ -52,5 +52,5 @@ function Task(param) {
     this.title = param.title;
     this.description = param.description;
     this.status = param.status;
-    this.creationDate = dateUtils.format(param.creation_date);
+    this.creationDate = dateformat(param.creation_date, 'dd-mm-yyyy');
 }

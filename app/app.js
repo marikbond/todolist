@@ -16,13 +16,10 @@ app.get('/', function (req, res) {
 });
 
 app.get('/search', function (req, res) {
-    var queryParams = req.query.query;
-    // var filteredTasks = Task.find(queryParams); // TODO <-- old options
-    Task.find(function (err, tasks) {
+    Task.find(req.query.query, function (err, tasks) {
         if (err) return;
-        res.render('index', {tasks: tasks})
-    }, queryParams);
-    //TODO найти задачи запросу и отрендерить html с задачими
+        res.render('partials/tasks', {tasks: tasks})
+    });
 });
 
 var port = 3009;

@@ -3,23 +3,8 @@
 <% include partials/search.ejs %>
 <div class="container">
     <div class="row">
-        <div class="col-sm-12">
-            <% tasks.forEach(function (task) { %>
-                <div class="bs-callout bs-callout-new">
-                    <h4><a href="#"><%= task.title %></a></h4>
-                    <p><%= task.description %></p>
-                    <div class="ceparator-lane"></div>
-                    <p>Status: <%= task.status %></p>
-                    <div class="dropdown">
-                        <span class="glyphicon glyphicon-option-vertical task-glyphicon pull-right dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown"></span>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="#">Start</a></li>
-                            <li><a href="#">Mark as done</a></li>
-                            <li><a href="#">Delete</a></li>
-                        </ul>
-                    </div>
-                </div>
-            <% }) %>
+        <div id="task-container" class="col-sm-12">
+            <% include partials/tasks.ejs%>
         </div>
     </div>
 </div>

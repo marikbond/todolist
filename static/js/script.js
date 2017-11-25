@@ -4,7 +4,7 @@ $('#search-form').submit(function (event) {
         url: "search?query=" + this.query.value,
         context: $('#task-container')
     }).done(function(tasksHtml) {
-        //TODO подменить URL на url c текущим запросом
+        console.log(tasksHtml);
         this.html(tasksHtml);
     });
     event.preventDefault();

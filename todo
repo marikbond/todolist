@@ -1,3 +1,13 @@
+[ ] - Написать код, чтобы получить список заданий из БД // write sql request to receive task list from data base
+[ ] - Вставить этот список в разметку // insert received list into html
+[ ] - Написать запрос в БД который будет добавлять данные // write sql request that is adding data into data base
+[ ] - На кнопку  save добавить обработчик, который соберет данные в полях и из дропдауна. // add an handler for save button that will take data from the fields and dropdown
+[ ] - Отправить POST запрос на сервер с данными // send POST request with data to server
+[ ] - Получить данные на сервере // receive data in server
+[ ] - На основании полученный данных с формы сформировать запрос на добавление задачи в БД // add data to data base
+[ ] - Если вставка произошла успешно - отрендерить задачу на сервере и отправить полученный html для вставки задачи на клиенте // if insert into data base went succesfully render new task on server and send html to client
+[ ] - Получить ответ от сервера с новой задачей  в виде html и вставить на странице // receive server response on client with new task and insert it into the page
+
 [+] - На кнопку search повесить обработчик, который будет получать строку запроса с формы;
 [ ] - Подменять URL согласно результату поиска на странице; HistoryAPI
 [+] - Отправить запрос через ajax на сервер для поиска задач отвечающим запросу;

@@ -7,11 +7,18 @@ app.set('view engine', 'ejs');
 app.use(express.static('static'));
 
 var Task = require('./models/tasks');
+var Status = require('./models/statuses');
 
 app.get('/', function (req, res) {
     Task.findAll(function (err, tasks) {
         if (err) return;
-        res.render('index', {tasks: tasks});
+        Status.findAll(function (err, statuses) {
+            if (err) return;
+            res.render('index', {
+                tasks: tasks,
+                statuses: statuses
+            });
+        });
     });
 });
 

@@ -1,5 +1,5 @@
 [+] - Написать код, чтобы получить список статусов из БД // write sql request to receive statuses list from data base
-[ ] - Вставить этот список в разметку // insert received list into html
+[+] - Вставить этот список в разметку // insert received list into html
 [ ] - Написать запрос в БД который будет добавлять данные // write sql request that is adding data into data base
 [ ] - На кнопку  save добавить обработчик, который соберет данные в полях и из дропдауна. // add an handler for save button that will take data from the fields and dropdown
 [ ] - Отправить POST запрос на сервер с данными // send POST request with data to server

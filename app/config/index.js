@@ -1,13 +1,13 @@
 var nconf = require('nconf');
 var path = require('path');
 
-var environment = process.env.NODE_ENV || 'development';
+var env = process.env.NODE_ENV || 'development';
 
-//TODO +
+console.log('environment: ', env);
 
 nconf
     .argv()
     .env()
     .file({file: path.join(__dirname, 'db-config.json')});
 
-module.exports = nconf.get(environment);
+module.exports = nconf.get(env);

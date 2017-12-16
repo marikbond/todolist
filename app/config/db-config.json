@@ -9,12 +9,15 @@
     }
   },
   "production": {
-    "user": "root",
-    "password": "root",
-    "database": "todolist",
+    "user": "sql10211063",
+    "password": "dcvaLkb5n5",
+    "database": "sql10211063",
     "options": {
-      "host": "localhost",
+      "host": "sql10.freemysqlhosting.net",
       "connectionLimit": "20"
     }
+  },
+  "free_mysql_hosting": {
+    "password": "*bPO^u7PQ^b2Y@Xm"
   }
 }

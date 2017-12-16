@@ -1,6 +1,6 @@
 var connectionPool = require('./index');
 
-var statusAPI = {
+var statusDAO = {
     findAll: function (callback) {
         connectionPool.getConnection(function(err, connection) {
             if (err) {
@@ -24,4 +24,4 @@ function extractStatuses(results) {
     })
 }
 
-module.exports = statusAPI;
+module.exports = statusDAO;

@@ -29,7 +29,7 @@ app.get('/search', function (req, res) {
     });
 });
 
-var port = 3009;
+var port = process.env.PORT || 8080;
 app.listen(port, function () {
     console.log('Example app listening on port ' + port + '!');
 });

@@ -1,7 +1,7 @@
 var connectionPool = require('./index');
 var dateformat = require('dateformat');
 
-var TaskAPI = {
+var TaskDAO = {
     findAll: function (callback) {
         connectionPool.getConnection(function(err, connection) {
             if (err) {
@@ -30,10 +30,28 @@ var TaskAPI = {
                 if (error) throw error;
                 callback(null, extractTasks(results));
             });
-        }, params);
+        });
     },
     findById: function () {
         throw new Error('Unsupported operation');
+    },
+    save: function (task) {
+        connectionPool.getConnection(function(err, connection) {
+            if (err) {
+                console.error('ERROR connecting!: ' + err.stack);
+                callback(err);
+                return;
+            }
+            var task = {
+                title: 'Title',
+                description: 'description',
+                status: 'NOT STARTED'
+            };
+            connection.query('INSERT INTO posts SET ?', task, function (error, results, fields) {
+                if (error) throw error;
+                console.log(results.insertId);
+            });
+        });
     }
 };
 
@@ -45,7 +63,7 @@ function extractTasks(results) {
     return tasks;
 }
 
-module.exports = TaskAPI;
+module.exports = TaskDAO;
 
 function Task(param) {
     this.id = param.id;

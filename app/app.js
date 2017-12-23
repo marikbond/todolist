@@ -6,13 +6,13 @@ app.set('views', './app/views');
 app.set('view engine', 'ejs');
 app.use(express.static('static'));
 
-var Task = require('./models/tasks');
-var Status = require('./models/statuses');
+var TaskDAO = require('./models/tasks');
+var StatusDAO = require('./models/statuses');
 
 app.get('/', function (req, res) {
-    Task.findAll(function (err, tasks) {
+    TaskDAO.findAll(function (err, tasks) {
         if (err) return;
-        Status.findAll(function (err, statuses) {
+        StatusDAO.findAll(function (err, statuses) {
             if (err) return;
             res.render('index', {
                 tasks: tasks,
@@ -23,10 +23,15 @@ app.get('/', function (req, res) {
 });
 
 app.get('/search', function (req, res) {
-    Task.find(req.query.query, function (err, tasks) {
+    TaskDAO.find(req.query.query, function (err, tasks) {
         if (err) return;
         res.render('partials/tasks', {tasks: tasks})
     });
+});
+
+app.post('/add-task', function (req, res) {
+    //TODO Add task to DB
+    res.end();
 });
 
 var port = process.env.PORT || 8080;

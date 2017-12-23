@@ -9,7 +9,7 @@ var TaskDAO = {
                 callback(err);
                 return;
             }
-            var sql = 'SELECT * FROM tasks';
+            var sql = 'SELECT * FROM tasks_with_statuses';
             connection.query(sql, function (error, results) {
                 connection.release();
                 if (error) throw error;
@@ -42,12 +42,7 @@ var TaskDAO = {
                 callback(err);
                 return;
             }
-            var task = {
-                title: 'Title',
-                description: 'description',
-                status: 'NOT STARTED'
-            };
-            connection.query('INSERT INTO posts SET ?', task, function (error, results, fields) {
+            connection.query('INSERT INTO tasks SET ?', task, function (error, results) {
                 if (error) throw error;
                 console.log(results.insertId);
             });
@@ -56,16 +51,14 @@ var TaskDAO = {
 };
 
 function extractTasks(results) {
-    var tasks = [];
-    results.forEach(function (row) {
-        tasks.push(new Task(row));
+    return results.map(function (row) {
+        return new TaskDTO(row);
     });
-    return tasks;
 }
 
 module.exports = TaskDAO;
 
-function Task(param) {
+function TaskDTO(param) {
     this.id = param.id;
     this.title = param.title;
     this.description = param.description;

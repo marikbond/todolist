@@ -9,3 +9,22 @@ $('#search-form').submit(function (event) {
     });
     event.preventDefault();
 });
+
+$('#save-task-button').click(function (event) {
+    $.ajax({
+        method: "POST",
+        url: "/add-task",
+        data: extractTask()
+    }).done(function() {
+        //TODO Add new task to view
+    });
+    event.preventDefault();
+});
+
+function extractTask() {
+    return {
+        title: $('#task-title').val(),
+        content: $('#task-content').val(),
+        status: +$('#task-status').val()
+    }
+}

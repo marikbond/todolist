@@ -28,16 +28,16 @@
                 <input id="task-title" type="text" class="form-control" placeholder="Title">
                 <h5>Status</h5>
                 <select id="task-status" class="form-control">
-                    <% statuses.forEach(function (status, index) { %>
-                        <option value="<%= index %>"><%= status %></option>
+                    <% statuses.forEach(function (status) { %>
+                        <option value="<%= status.id %>"><%= status.status %></option>
                     <% }) %>
                 </select>
                 <h5>Content</h5>
                 <textarea id="task-content" class="form-control" rows="6" placeholder="Content"></textarea>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="articleCtrl.clearModal()">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="articleCtrl.saveArticle()">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="save-task-button" class="btn btn-primary" data-dismiss="modal">Save</button>
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 var connectionPool = require('./index');
 
+/* Data Access Object */
 var statusDAO = {
     findAll: function (callback) {
         connectionPool.getConnection(function(err, connection) {
@@ -8,7 +9,7 @@ var statusDAO = {
                 callback(err);
                 return;
             }
-            var sql = 'SELECT * FROM statuses;';
+            var sql = 'SELECT id, status FROM statuses ORDER BY `order`;';
             connection.query(sql, function (error, results) {
                 connection.release();
                 if (error) throw error;
@@ -20,8 +21,14 @@ var statusDAO = {
 
 function extractStatuses(results) {
     return results.map(function (row) {
-        return row.status;
+        return new StatusDTO(row);
     })
 }
 
 module.exports = statusDAO;
+
+/* Data Transfer Object*/
+function StatusDTO(params) {
+    this.id = params.id;
+    this.status = params.status;
+}

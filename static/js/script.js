@@ -24,7 +24,7 @@ $('#save-task-button').click(function (event) {
 function extractTask() {
     return {
         title: $('#task-title').val(),
-        content: $('#task-content').val(),
+        description: $('#task-description').val(),
         status: $('#task-status').val()
     }
 }

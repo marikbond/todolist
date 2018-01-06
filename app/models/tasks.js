@@ -1,5 +1,5 @@
 var connectionPool = require('./index');
-var dateformat = require('dateformat');
+var dateFormat = require('dateformat');
 
 var TaskDAO = {
     findAll: function (callback) {
@@ -32,19 +32,32 @@ var TaskDAO = {
             });
         });
     },
-    findById: function () {
-        throw new Error('Unsupported operation');
+    findById: function (id, callback) {
+        connectionPool.getConnection(function (err, connection) {
+            if (err) throw err;
+            var sql = [
+                'select *',
+                'from tasks t left join statuses s on t.status = s.id',
+                'where t.id = ' + id
+            ].join(' ');
+            connection.query(sql, function (err, results) {
+                connection.release();
+                if (err) throw err;
+                callback(null, new TaskDTO(results[0]));
+            })
+        })
     },
-    save: function (task) {
+    save: function (params, callback) {
+        var self = this;
         connectionPool.getConnection(function(err, connection) {
             if (err) {
                 console.error('ERROR connecting!: ' + err.stack);
                 callback(err);
                 return;
             }
-            connection.query('INSERT INTO tasks SET ?', task, function (error, results) {
+            connection.query('INSERT INTO tasks SET ?', params, function (error, results) {
                 if (error) throw error;
-                console.log(results.insertId);
+                self.findById(results.insertId, callback);
             });
         });
     }
@@ -63,5 +76,5 @@ function TaskDTO(param) {
     this.title = param.title;
     this.description = param.description;
     this.status = param.status;
-    this.creationDate = dateformat(param.creation_date, 'dd-mm-yyyy');
+    this.creationDate = dateFormat(param.creation_date, 'dd-mm-yyyy');
 }

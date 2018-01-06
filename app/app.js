@@ -33,8 +33,10 @@ app.get('/search', function (req, res) {
 });
 
 app.post('/add-task', function (req, res) {
-    console.log(req.body);
-    res.end();
+    TaskDAO.save(req.body, function (err, task) {
+        if (err) throw err;
+        res.end(task);
+    });
 });
 
 var port = process.env.PORT || 8080;

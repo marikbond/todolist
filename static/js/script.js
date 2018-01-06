@@ -25,6 +25,6 @@ function extractTask() {
     return {
         title: $('#task-title').val(),
         content: $('#task-content').val(),
-        status: +$('#task-status').val()
+        status: $('#task-status').val()
     }
 }

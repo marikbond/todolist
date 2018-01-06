@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/marikbond/todolist#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "dateformat": "^3.0.2",
     "ejs-locals": "^1.0.2",
     "express": "^4.15.4",

@@ -1,10 +1,13 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 
 app.engine('ejs', require('ejs-locals'));
 app.set('views', './app/views');
 app.set('view engine', 'ejs');
 app.use(express.static('static'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 var TaskDAO = require('./models/tasks');
 var StatusDAO = require('./models/statuses');
@@ -30,7 +33,7 @@ app.get('/search', function (req, res) {
 });
 
 app.post('/add-task', function (req, res) {
-    //TODO Add task to DB
+    console.log(req.body);
     res.end();
 });
 

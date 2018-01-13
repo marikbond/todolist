@@ -35,7 +35,7 @@ app.get('/search', function (req, res) {
 app.post('/add-task', function (req, res) {
     TaskDAO.save(req.body, function (err, task) {
         if (err) throw err;
-        res.end(task);
+        res.render('partials/task', {task: task});
     });
 });
 

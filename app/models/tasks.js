@@ -56,6 +56,7 @@ var TaskDAO = {
                 return;
             }
             connection.query('INSERT INTO tasks SET ?', params, function (error, results) {
+                connection.release();
                 if (error) throw error;
                 self.findById(results.insertId, callback);
             });

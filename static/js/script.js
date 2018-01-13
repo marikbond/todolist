@@ -1,22 +1,23 @@
+var $task = $('#task-container');
+
 $('#search-form').submit(function (event) {
     $.ajax({
         method: "GET",
-        url: "search?query=" + this.query.value,
-        context: $('#task-container')
+        url: "search?query=" + this.query.value
     }).done(function(tasksHtml) {
-        console.log(tasksHtml);
-        this.html(tasksHtml);
+        $task.html(tasksHtml);
     });
     event.preventDefault();
 });
 
-$('#save-task-button').click(function (event) {
+$('#save-task-btn').click(function (event) {
     $.ajax({
         method: "POST",
         url: "/add-task",
         data: extractTask()
-    }).done(function() {
-        //TODO Add new task to view
+    }).done(function(taskHtml) {
+        $task.append(taskHtml);
+        resetModalForm();
     });
     event.preventDefault();
 });
@@ -27,4 +28,10 @@ function extractTask() {
         description: $('#task-description').val(),
         status: $('#task-status').val()
     }
+}
+
+function resetModalForm() {
+    $('#task-title').val('');
+    $('#task-description').val();
+    $('#task-status').val(4);
 }

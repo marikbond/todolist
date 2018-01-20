@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- build:css style.min.css -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
+    <!-- endbuild -->
 </head>
 <body>
 <%- partial('partials/navbar') %>
 <%- body -%>
-<script src="jquery/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
+<!-- build:js script.min.js -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="js/script.js"></script>
+<!-- endbuild -->
 </body>
 </html>

@@ -11,6 +11,7 @@ $('#search-form').submit(function (event) {
 });
 
 $('#save-task-btn').click(function (event) {
+    event.preventDefault();
     $.ajax({
         method: "POST",
         url: "/add-task",
@@ -19,7 +20,24 @@ $('#save-task-btn').click(function (event) {
         $task.append(taskHtml);
         resetModalForm();
     });
+});
+
+$('.delete-task-btn').click(function (event) {
     event.preventDefault();
+    var $listItem = $(this);
+    var $task = $listItem.closest('.task');
+    $.ajax({
+        method: "GET",
+        url: "/delete-task/" + $task.data('taskId'),
+        statusCode: {
+            200: function () {
+                $task.remove();
+            },
+            503: function () {
+                console.log('ERROR');
+            }
+        }
+    })
 });
 
 function extractTask() {

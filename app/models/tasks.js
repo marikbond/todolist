@@ -61,6 +61,20 @@ var TaskDAO = {
                 self.findById(results.insertId, callback);
             });
         });
+    },
+    delete: function (id, callback) {
+        var sql = "DELETE FROM tasks WHERE id=" + id;
+        connectionPool.getConnection(function (err, connection) {
+            if (err) {
+                console.error('ERROR connecting!: ' + err.stack);
+                callback(err);
+                return;
+            }
+            connection.query(sql, function (error) {
+                connection.release();
+                callback(error);
+            })
+        })
     }
 };
 

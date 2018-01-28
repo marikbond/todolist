@@ -1,11 +1,11 @@
-<div class="bs-callout bs-callout-new">
+<div data-task-id="<%= task.id %>" class="task bs-callout bs-callout-new" >
     <h4><a href="#"><%= task.title %> (Creation date: <%= task.creationDate %>)</a></h4>
     <div class="dropdown">
-        <span class="glyphicon glyphicon-option-vertical task-glyphicon dropdown-toggle pull-right" id="dropdownMenu1" data-toggle="dropdown"></span>
-        <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+        <span class="glyphicon glyphicon-option-vertical task-glyphicon dropdown-toggle pull-right" id="dropdownMenu" data-toggle="dropdown"></span>
+        <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu">
             <li><a href="#">Start</a></li>
             <li><a href="#">Mark as done</a></li>
-            <li><a href="#">Delete</a></li>
+            <li class="delete-task-btn"><a href="#">Delete</a></li>
         </ul>
     </div>
     <p><%= task.description %></p>

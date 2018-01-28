@@ -32,6 +32,12 @@ app.get('/search', function (req, res) {
     });
 });
 
+app.get('/delete-task/:id', function (req, res) {
+    TaskDAO.delete(req.params.id, function (error) {
+        res.sendStatus(error ? 503 : 200);
+    });
+});
+
 app.post('/add-task', function (req, res) {
     TaskDAO.save(req.body, function (err, task) {
         if (err) throw err;
@@ -39,7 +45,7 @@ app.post('/add-task', function (req, res) {
     });
 });
 
-var port = process.env.PORT || 8180;
+var port = process.env.PORT || 3001;
 app.listen(port, function () {
     console.log('Example app listening on port ' + port + '!');
 });

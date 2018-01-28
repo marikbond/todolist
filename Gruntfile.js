@@ -1,5 +1,7 @@
 module.exports = function(grunt) {
 
+    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         bower_concat: {
@@ -7,37 +9,22 @@ module.exports = function(grunt) {
                 dest: './static/tmp/_bower.js'
             }
         },
-        uglify: {
-            options: {
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-            },
-            build: {
-                files: {
-                    './static/dist/script.min.js': [
-                        './static/tmp/_bower.js',
-                        './static/js/script.js'
-                    ]
-                }
-            }
-        },
         useminPrepare: {
             html: './app/views/boilerplate.ejs',
             options: {
-                dest: './app/views/bo'
+                dest: './static/dist'
             }
         },
         usemin: {
-            html: 'static/build/app.html'
+            html: './app/views/boilerplate.min.ejs'
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-bower-concat');
-
     grunt.registerTask('default', [
         'useminPrepare',
-        'bower_concat',
-        'uglify',
+        'concat:generated',
+        'cssmin:generated',
+        'uglify:generated',
         'usemin'
     ]);
 };

@@ -55,7 +55,7 @@
     width: 150px;
 }
 
-.bs-callout {
+.task {
     padding: 10px 15px;
     margin: 20px 0;
     border: 1px solid #eee;
@@ -70,44 +70,44 @@
     margin: 5px 0 5px 0;
 }
 
-.bs-callout h4 {
+.task h4 {
     margin-top: 0;
     margin-bottom: 5px;
 }
 
-.bs-callout p:last-child {
+.task p:last-child {
     margin-bottom: 0;
 }
 
-.bs-callout-new {
+.task-new {
     border-left-color: #428bca;
 }
 
-.bs-callout-new h4 a {
+.task-new h4 a {
     color: #428bca;
 }
 
-.bs-callout-done {
+.task-completed {
     border-left-color: #5cb85c;
 }
 
-.bs-callout-done h4 a {
+.task-completed h4 a {
     color: #5cb85c;
 }
 
-.bs-callout-immeditelly {
+.task-canceled {
     border-left-color: #d9534f;
 }
 
-.bs-callout-immeditelly h4 a {
+.task-canceled h4 a {
     color: #d9534f;
 }
 
-.bs-callout-in-progress {
+.task-in-progress {
     border-left-color: #f0ad4e;
 }
 
-.bs-callout-in-progress h4 a {
+.task-in-progress h4 a {
     color: #f0ad4e;
 }
 

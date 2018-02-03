@@ -17,6 +17,7 @@ $('#save-task-btn').click(function (event) {
         url: "/add-task",
         data: extractTask()
     }).done(function(taskHtml) {
+        console.log(taskHtml);
         $task.append(taskHtml);
         resetModalForm();
     });

@@ -1,4 +1,4 @@
-<div data-task-id="<%= task.id %>" class="task bs-callout bs-callout-new" >
+<div data-task-id="<%= task.id %>" class=" task <%= task.class %>" >
     <h4><a href="#"><%= task.title %> (Creation date: <%= task.creationDate %>)</a></h4>
     <div class="dropdown">
         <span class="glyphicon glyphicon-option-vertical task-glyphicon dropdown-toggle pull-right" id="dropdownMenu" data-toggle="dropdown"></span>
@@ -12,3 +12,5 @@
     <div class="ceparator-lane"></div>
     <p>Status: <%= task.status %></p>
 </div>
+
+<!--data-toggle="modal" data-target="#proof-delete"-->

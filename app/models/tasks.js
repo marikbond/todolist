@@ -88,8 +88,22 @@ module.exports = TaskDAO;
 
 function TaskDTO(param) {
     this.id = param.id;
+    this.class = identifyClass(param.status);
     this.title = param.title;
     this.description = param.description;
     this.status = param.status;
     this.creationDate = dateFormat(param.creation_date, 'dd-mm-yyyy');
+}
+
+function identifyClass(status) {
+    switch (status) {
+        case "NOT STARTED":
+            return "task-new";
+        case "IN PROGRESS":
+            return "task-in-progress";
+        case "COMPLETED":
+            return "task-completed";
+        case "CANCELED":
+            return "task-canceled";
+    }
 }

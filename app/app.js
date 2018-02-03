@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var async = require('async');
 var app = express();
 
 app.engine('ejs', require('ejs-locals'));
@@ -13,15 +14,14 @@ var TaskDAO = require('./models/tasks');
 var StatusDAO = require('./models/statuses');
 
 app.get('/', function (req, res) {
-    TaskDAO.findAll(function (err, tasks) {
-        if (err) return;
-        StatusDAO.findAll(function (err, statuses) {
-            if (err) return;
-            res.render('index', {
-                tasks: tasks,
-                statuses: statuses
-            });
-        });
+    async.parallel({
+        tasks: TaskDAO.findAll,
+        statuses: StatusDAO.findAll
+    }, function(err, results) {
+        if (err) {
+            throw new Error('Exception when render index page');
+        }
+        res.render('index', results);
     });
 });
 
@@ -47,5 +47,5 @@ app.post('/add-task', function (req, res) {
 
 var port = process.env.PORT || 3001;
 app.listen(port, function () {
-    console.log('Example app listening on port ' + port + '!');
+    console.log('Server started on: http://localhost:' + port + '/');
 });

@@ -9,6 +9,13 @@
     <!-- endbuild -->
 </head>
 <body>
+<div id="modal-window" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
 <%- partial('partials/navbar') %>
 <%- body -%>
 <!-- build:js scripts.min.js -->
@@ -18,3 +25,16 @@
 <!-- endbuild -->
 </body>
 </html>
+
+<script id="modal-question-template" type="text/x-modal-template">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h3 class="modal-title"></h3>
+    </div>
+    <div class="modal-footer">
+        <button type="button" id="no-delete" class="btn btn-default">NO</button>
+        <button type="button" id="yes-delete" class="btn btn-primary">YES</button>
+    </div>
+</script>

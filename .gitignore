@@ -2,3 +2,4 @@
 node_modules/
 static/bower_components/
 test.js
+.tmp/

@@ -45,7 +45,25 @@ app.post('/add-task', function (req, res) {
     });
 });
 
-var port = process.env.PORT || 3001;
+app.post('/modals/:templateName', function (req, res) {
+    var templateUrl = 'modals/' + req.params.templateName;
+    res.render(templateUrl, req.body);
+});
+
+var port = process.env.PORT || 3002;
 app.listen(port, function () {
     console.log('Server started on: http://localhost:' + port + '/');
 });
+
+/*
+* HTTP1.1 POST
+* ContentLength: 234234
+* host: localhost:3001
+  contentType: application/json
+*
+* {
+*    title: 'Buy something',
+*    creationDate: '2018-01-01',
+*
+* }
+* */

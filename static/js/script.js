@@ -1,11 +1,11 @@
-var $task = $('#task-container');
+var $taskContainer = $('#task-container');
 
 $('#search-form').submit(function (event) {
     $.ajax({
         method: "GET",
         url: "search?query=" + this.query.value
     }).done(function (tasksHtml) {
-        $task.html(tasksHtml);
+        $taskContainer.html(tasksHtml);
     });
     event.preventDefault();
 });
@@ -18,64 +18,27 @@ $('#save-task-btn').click(function (event) {
         data: extractTask()
     }).done(function (taskHtml) {
         console.log(taskHtml);
-        $task.append(taskHtml);
+        $taskContainer.append(taskHtml);
         resetModalForm();
     });
 });
 
-$("#modal-question").click(function () {
-    var $relatedTarget = $(this);
-    $('#modal-window')
-        .on('show.bs.modal', function () {
-            //Тут можно сделать запрос к серверу и скачать шаблон c помощь jQuery.load
-            var $template = $($('#modal-question-template').html());
-            var $title = $template.find('h3.modal-title');
-            $title.html($relatedTarget.data('title'));
-            $('.modal-content').html($template.html());
-        })
-        .modal('toggle')
-});
-
 $('.delete-task-btn').click(function () {
     var $listItem = $(this);
-    var $task = $listItem.closest('.task');
-    $('#delete-task-modal')
-        .modal('toggle')
-        .on('show.bs.modal')
-        .on('');
-    console.log(result);
-    $('#yes-delete').click(function () {
-        $.ajax({
-            method: "GET",
-            url: "/delete-task/" + $task.data('taskId'),
-            statusCode: {
-                200: function () {
-                    $task.remove();
-                },
-                503: function () {
-                    console.log('ERROR');
-                }
+    DialogService.open({
+        template: 'ok-cancel-modal',
+        context: {
+            title: 'Question',
+            text: 'Are you sure?'
+        },
+        callbacks: {
+            onOkClick: function () {
+                var $task = $listItem.closest('.task');
+                TaskService.delete($task.data('taskId'));
             }
-        })
-    });
-    $('#no-delete').click(function () {
-        $('#delete-task-modal').modal("hide");
-        return false;
+        }
     });
 });
-
-// function deleteProovement() {
-//     // $('#delete-task-modal').modal('toggle');
-//
-//     $(function() {
-//         $('#yes-delete').click(function() {
-//             return true;
-//         });
-//         $('#no-delete').click(function() {
-//             return false;
-//         });
-//     });
-// }
 
 function extractTask() {
     return {

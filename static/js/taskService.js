@@ -1,14 +1,31 @@
 var TaskService = (function () {
 
+    var baseUrl = '/tasks/';
     var taskApi = {
-        delete: "/delete-task/"
+        create: {
+            url: baseUrl,
+            method: 'POST'
+        },
+        delete: {
+            url: baseUrl,
+            method: 'DELETE'
+        }
     };
 
     return {
-        delete: function (id) {
+        create: function (task, callback) {
+            var createApi = taskApi.create;
             $.ajax({
-                method: "GET",
-                url: taskApi.delete + id,
+                method: createApi.method,
+                url: createApi.url,
+                data: task
+            }).done(callback);
+        },
+        delete: function (id) {
+            var deleteApi = taskApi.delete;
+            $.ajax({
+                method: deleteApi.method,
+                url: deleteApi.url + id,
                 statusCode: {
                     200: function () {
                         var $task = $('[data-task-id="' + id + '"]');

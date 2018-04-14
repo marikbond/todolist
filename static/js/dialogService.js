@@ -5,7 +5,7 @@ var DialogService = (function () {
 
     return {
         open: function (options) {
-            var url = 'modals/' + options.template;
+            var url = '/modals/' + options.template;
             $modal.on('show.bs.modal', function () {
                 $modalContent.load(url, options.context, function () {
                     bindCallbacks(options.callbacks);

@@ -1,6 +1,7 @@
 var $taskContainer = $('#task-container');
 
 $('#search-form').submit(function (event) {
+    //TODO перенести функционал поиска в TaskService метод search
     $.ajax({
         method: "GET",
         url: "search?query=" + this.query.value
@@ -12,12 +13,8 @@ $('#search-form').submit(function (event) {
 
 $('#save-task-btn').click(function (event) {
     event.preventDefault();
-    $.ajax({
-        method: "POST",
-        url: "/add-task",
-        data: extractTask()
-    }).done(function (taskHtml) {
-        console.log(taskHtml);
+    TaskService.create(extractTask(), function (taskHtml) {
+        var $taskContainer = $('#task-container');
         $taskContainer.append(taskHtml);
         resetModalForm();
     });

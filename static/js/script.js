@@ -1,22 +1,35 @@
 var $taskContainer = $('#task-container');
 
 $('#search-form').submit(function (event) {
-    //TODO перенести функционал поиска в TaskService метод search
+    event.preventDefault();
+    var form  = this;
+    var queryParams = "search?"
+        + "text=" + form.text.value
+        + '&status=' + form.status.value
+        + '&direction=' + form.direction.value;
     $.ajax({
         method: "GET",
-        url: "search?query=" + this.query.value
+        url: queryParams
     }).done(function (tasksHtml) {
         $taskContainer.html(tasksHtml);
     });
-    event.preventDefault();
 });
 
-$('#save-task-btn').click(function (event) {
-    event.preventDefault();
-    TaskService.create(extractTask(), function (taskHtml) {
-        var $taskContainer = $('#task-container');
-        $taskContainer.append(taskHtml);
-        resetModalForm();
+$('#add-task-btn').click(function () {
+    DialogService.open({
+        template: 'new-task-modal',
+        callbacks: {
+            onSaveClick: function (event) {
+                event.preventDefault();
+                TaskService.create({
+                    title: $('#task-title').val(),
+                    description: $('#task-description').val(),
+                    status: $('#task-status').val()
+                }, function (html) {
+                    $taskContainer.append(html);
+                });
+            }
+        }
     });
 });
 
@@ -37,16 +50,31 @@ $('.delete-task-btn').click(function () {
     });
 });
 
-function extractTask() {
-    return {
-        title: $('#task-title').val(),
-        description: $('#task-description').val(),
-        status: $('#task-status').val()
-    }
-}
 
-function resetModalForm() {
-    $('#task-title').val('');
-    $('#task-description').val();
-    $('#task-status').val(4);
-}
+$("#sign-up-form").validate({
+    rules: {
+        firstname: 'required',
+        lastname: 'required',
+        email: {
+            required: true,
+            email: true
+        },
+        username: 'required',
+        password: {
+            required: true,
+            minlength: 5
+        }
+    },
+    messages: {
+        firstname: "Please enter your firstname",
+        lastname: "Please enter your lastname",
+        password: {
+            required: "Please provide a password",
+            minlength: "Your password must be at least 5 characters long"
+        },
+        email: "Please enter a valid email address"
+    },
+    submitHandler: $('#submit-signin-btn').click(function () {
+        console.log('Hi');
+    })
+});

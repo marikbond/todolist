@@ -9,7 +9,13 @@ var TaskDAO = {
                 callback(err);
                 return;
             }
-            var sql = 'SELECT * FROM tasks_with_statuses';
+            var sql =  'select '
+                +     '  t.id, '
+                +     '  t.title, '
+                +     '  t.description, '
+                +     '  s.status, '
+                +     '  t.creation_date '
+                +     'from tasks as t left join statuses as s on t.status = s.id;';
             connection.query(sql, function (error, results) {
                 connection.release();
                 if (error) throw error;
@@ -24,7 +30,12 @@ var TaskDAO = {
                 callback(err);
                 return;
             }
-            var sql = 'SELECT * FROM Tasks WHERE title LIKE ' + "'%" + params + "%'";
+            var sql =
+                "SELECT * " +
+                "FROM   tasks " +
+                "WHERE  title LIKE '%" + params.text + "%' " +
+                "       AND status = " + params.status + " " +
+                "ORDER  BY creation_date " + params.direction + ";";
             connection.query(sql, function (error, results) {
                 connection.release();
                 if (error) throw error;

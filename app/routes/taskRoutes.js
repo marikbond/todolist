@@ -35,10 +35,26 @@ router.delete('/:id', function (req, res) {
 });
 
 router.get('/search', function (req, res) {
-    TaskDAO.find(req.query.query, function (err, tasks) {
+    TaskDAO.find(req.query, function (err, tasks) {
         if (err) return;
         res.render('partials/tasks', {tasks: tasks})
     });
-});
+    });
+
+
+// async.parallel({
+//     tasks: TaskDAO.find(req.query, function () {
+//         console.log('done')
+//     }),
+//     statuses: StatusDAO.findAll
+// }, function (err, results) {
+//     if (err) throw new err;
+//     res.render('partials/task', results)
+
+    // two: function(callback) {
+    //     setTimeout(function() {
+    //         callback(null, 2);
+    //     }, 100);
+    // }
 
 module.exports = router;

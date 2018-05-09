@@ -23,6 +23,7 @@
     "dateformat": "^3.0.2",
     "ejs-locals": "^1.0.2",
     "express": "^4.15.4",
+    "jquery-validation": "^1.17.0",
     "mysql": "^2.14.1",
     "nconf": "^0.8.5"
   },

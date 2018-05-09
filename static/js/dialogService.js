@@ -7,7 +7,8 @@ var DialogService = (function () {
         open: function (options) {
             var url = '/modals/' + options.template;
             $modal.on('show.bs.modal', function () {
-                $modalContent.load(url, options.context, function () {
+                var context = options.context || {};
+                $modalContent.load(url, context, function () {
                     bindCallbacks(options.callbacks);
                 });
             }).modal('toggle');

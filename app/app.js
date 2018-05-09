@@ -12,14 +12,15 @@ app.use(bodyParser.json());
 app.get('/', function (req, res) {
     res.redirect('/tasks/');
 });
-app.use('/tasks', require('./routes/tasksRoutes'));
 
-app.post('/modals/:templateName', function (req, res) {
-    var templateUrl = 'modals/' + req.params.templateName;
-    res.render(templateUrl, req.body);
+app.get('/signUp', function (req, res) {
+    res.render('signUp');
 });
 
-var port = process.env.PORT || 3002;
+app.use('/tasks', require('./routes/taskRoutes'));
+app.use('/modals', require('./routes/modalRoutes'));
+
+var port = process.env.PORT || 3007;
 app.listen(port, function () {
     console.log('Server started on: http://localhost:' + port + '/');
 });
